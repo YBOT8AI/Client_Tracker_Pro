@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { UserPlus, Search } from 'lucide-react';
+import { exportCustomersToCSV } from '@/lib/export';
+import { UserPlus, Search, Download } from 'lucide-react';
 
 export default function ClientsPage() {
   const [formData, setFormData] = useState({
@@ -50,11 +51,55 @@ export default function ClientsPage() {
     }
   }
 
+  async function handleExportAllClients() {
+    try {
+      const { data: allClients, error } = await supabase
+        .from('client_stats')
+        .select('*');
+
+      if (error) throw error;
+      if (!allClients || allClients.length === 0) {
+        alert('No client data to export');
+        return;
+      }
+
+      exportCustomersToCSV(allClients);
+    } catch (error: any) {
+      console.error('Error exporting clients:', error);
+      alert(`Failed to export clients: ${error.message}`);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">👥 Add Client</h1>
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold text-gray-900">👥 Client Management</h1>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleExportAllClients}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors shadow-sm"
+              >
+                <Download className="w-4 h-4" />
+                Export All
+              </button>
+              <nav className="flex gap-2">
+                <a href="/" className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                  Dashboard
+                </a>
+                <a href="/clients" className="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                  Clients
+                </a>
+                <a href="/purchases" className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                  Purchases
+                </a>
+                <a href="/analytics" className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                  📊 Analytics
+                </a>
+              </nav>
+            </div>
+          </div>
         </div>
       </header>
 

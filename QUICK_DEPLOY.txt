@@ -1,0 +1,74 @@
+═══════════════════════════════════════════════════════════════
+  🚨 URGENT DEPLOYMENT - CLIENT TRACKER PRO
+═══════════════════════════════════════════════════════════════
+
+STATUS: Code complete, ready to deploy
+LOCATION: /root/client-tracker on srv1595219
+
+───────────────────────────────────────────────────────────────
+  OPTION 1: FASTEST (Vercel Dashboard - Any Device) - 3 MIN
+───────────────────────────────────────────────────────────────
+
+1. CREATE GITHUB REPO (1 min):
+   → Go to: https://github.com/new
+   → Name: client-tracker
+   → Public or Private (your choice)
+   → DO NOT initialize with README
+   → Click "Create repository"
+
+2. PUSH CODE (1 min):
+   → Run these commands on srv1595219:
+
+   cd /root/client-tracker
+   git remote add origin git@github.com:YBOT8AI/client-tracker.git
+   git branch -M main
+   git push -u origin main
+
+3. DEPLOY TO VERCEL (1 min):
+   → Go to: https://vercel.com/new
+   → Import: YBOT8AI/client-tracker
+   → Add environment variables:
+     NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+     NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
+     SUPABASE_SERVICE_ROLE_KEY=...
+   → Click Deploy
+
+DONE! You get: https://client-tracker-xxx.vercel.app
+
+───────────────────────────────────────────────────────────────
+  OPTION 2: VERCEL CLI (From Your Laptop) - 5 MIN
+───────────────────────────────────────────────────────────────
+
+1. Download code from server:
+   scp root@srv1595219:/tmp/client-tracker-code.tar.gz .
+   tar -xzf client-tracker-code.tar.gz
+   cd client-tracker
+
+2. Install and deploy:
+   npm install
+   vercel --prod
+
+3. Add env vars in Vercel dashboard after deploy.
+
+───────────────────────────────────────────────────────────────
+  NEEDED: Supabase Credentials
+───────────────────────────────────────────────────────────────
+
+If you don't have Supabase set up yet:
+
+1. Go to https://supabase.com
+2. New Project → Wait ~2 min for provisioning
+3. SQL Editor → Run contents of supabase/schema.sql
+4. Settings → API → Copy:
+   - Project URL
+   - anon/public key
+   - service_role key (secret!)
+
+───────────────────────────────────────────────────────────────
+  CODE PACKAGE READY
+───────────────────────────────────────────────────────────────
+
+Tarball: /tmp/client-tracker-code.tar.gz (57KB)
+Git repo: /root/client-tracker (committed, ready to push)
+
+═══════════════════════════════════════════════════════════════

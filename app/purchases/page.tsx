@@ -72,7 +72,35 @@ export default function PurchasesPage() {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">🛍️ Record Purchase</h1>
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold text-gray-900">🛍️ Purchase Tracking</h1>
+            <nav className="flex gap-2">
+              <a
+                href="/"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Dashboard
+              </a>
+              <a
+                href="/clients"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Clients
+              </a>
+              <a
+                href="/purchases"
+                className="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+              >
+                Purchases
+              </a>
+              <a
+                href="/analytics"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                📊 Analytics
+              </a>
+            </nav>
+          </div>
         </div>
       </header>
 
